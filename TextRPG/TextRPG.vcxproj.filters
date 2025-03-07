@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{01a869a5-4994-4054-8bdc-554a7945b624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character">
+      <UniqueIdentifier>{6126e7d2-5aeb-4a32-92b3-1cc3f8896258}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextRPG.cpp">
@@ -21,42 +27,39 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonster.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CMainGame.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CCharacter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CField.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CShop.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CItemContainer.cpp">
+      <Filter>Item</Filter>
     </ClCompile>
     <ClCompile Include="CItem.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CShop.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CCharacter.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerInventory.cpp">
+      <Filter>Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonster.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CMainGame.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CCharacter.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Define.h">
@@ -65,11 +68,26 @@
     <ClInclude Include="CField.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CShop.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CItemContainer.h">
+      <Filter>Item</Filter>
     </ClInclude>
     <ClInclude Include="CItem.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CShop.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CCharacter.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerInventory.h">
+      <Filter>Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -18,19 +18,39 @@ enum class EItemRarity
 
 struct SItemData
 {
+public:
 	int m_iId;
-	char m_sName[32];
+	string m_sName;
 	EItemType m_eItemType;
 	EItemRarity m_eItemRarity;
-	char m_sDescription[32];
+	string m_sDescription;
 	int m_iPrice;
+	int m_iMaxStackCount;
+
+public:
+	string ToStringRairity (EItemRarity type) const
+	{
+		if (type == EItemRarity::LOW)
+		{
+			return "하급";
+		}
+		else if (type == EItemRarity::MID)
+		{
+			return "중급";
+		}
+		else if (type == EItemRarity::HIGH)
+		{
+			return "상급";
+		}
+		return "";
+	}
 };
 
 class CItem
 {
 public:
 	CItem();
-	CItem(SItemData data);
+	CItem(const SItemData& itemData, int iCount);
 	virtual ~CItem();
 
 public:
@@ -39,10 +59,15 @@ public:
 	virtual void Release();
 
 public:
-	virtual void PrintItem();
-	virtual void Use(class CCharacter* User);
+	inline const SItemData& GetItemData() const { return m_sItemData; }
+	inline const int& GetStackCount() const { return m_iStackCount; }
 
-private:
+public:
+	virtual void Use(class CCharacter* User);
+	bool AddItem(int iCount);
+
+protected:
 	SItemData m_sItemData;
+	int m_iStackCount;
 };
 

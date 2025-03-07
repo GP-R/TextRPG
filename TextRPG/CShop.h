@@ -1,12 +1,12 @@
 #pragma once
 
-#include <vector>
+struct SItemData;
 
 class CShop
 {
 public:
 	CShop();
-	CShop(const char* pName, vector<class CItem*>* vItems);
+	CShop(const char* pName);
 	virtual ~CShop();
 
 public:
@@ -14,10 +14,17 @@ public:
 	virtual void Update();
 	virtual void Release();
 
+	virtual void Render();
+
 public:
+	void SetInteractor(class CCharacter* pCharacter) { m_pInteractor = pCharacter; }
+
+public:
+	void AddShopItem(const vector<SItemData>& vecItems);
 
 private:
-	char m_sName[32];
-	vector<class CItem*> m_vItemContainer;
+	class CCharacter* m_pInteractor;
+	string m_sName;
+	class CItemContainer* m_pItemContainer;
 };
 

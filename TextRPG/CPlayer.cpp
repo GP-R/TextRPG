@@ -1,18 +1,23 @@
 #include "pch.h"
 #include "CPlayer.h"
+#include "CPlayerInventory.h"
 
+#include "Define.h"
 CPlayer::CPlayer()
 {
-
+	m_pPlayerInventory = nullptr;
 }
 
 CPlayer::~CPlayer()
 {
+	Release();
 }
 
 void CPlayer::Initialize()
 {
 	CCharacter::Initialize();
+	m_pPlayerInventory = new CPlayerInventory(5);
+	m_pPlayerInventory->Initialize();
 }
 
 void CPlayer::Update()
@@ -22,7 +27,8 @@ void CPlayer::Update()
 
 void CPlayer::Release()
 {
-
+	cout << "플레이어 m_pPlayerInventory 삭제" << endl;
+	SAFE_DELETE(m_pPlayerInventory);
 }
 
 void CPlayer::Select_Job()

@@ -4,6 +4,7 @@
 #include "CPlayer.h"
 #include "CShop.h"
 #include "CItem.h"
+#include "CPlayerInventory.h"
 
 #include "Define.h"
 
@@ -40,41 +41,47 @@ void CMainGame::Initialize()
 
     if (!m_pLowLevelShop)
     {
-        vector<CItem*> items = 
-        {
-            {   new CItem{{1,"Low Meet",EItemType::CONSUME, EItemRarity::LOW, "+HP 50", 10}}        },
-            {   new CItem{{2,"Low Chicken",EItemType::CONSUME, EItemRarity::LOW, "+HP 100", 20}}    }
-        };
-        m_pLowLevelShop = new CShop{"Low Level Shop",&items };
+        m_pLowLevelShop = new CShop{"Low Level Shop" };
         m_pLowLevelShop->Initialize();
+        vector<SItemData> items = 
+        {
+            {1,"Low Meet",EItemType::CONSUME, EItemRarity::LOW, "+HP 50", 10, 99},
+            {2,"Low Chicken",EItemType::CONSUME, EItemRarity::LOW, "+HP 100", 20, 99}
+        };
+        m_pLowLevelShop->AddShopItem(items);
     }
 
     if (!m_pMidLevelShop)
     {
-        vector<CItem*> items =
-        {
-            {   new CItem{{1,"Mid Meet",EItemType::CONSUME, EItemRarity::LOW, "+HP 50", 10}}        },
-            {   new CItem{{2,"Mid Chicken",EItemType::CONSUME, EItemRarity::LOW, "+HP 100", 20}}    }
-        };
-        m_pMidLevelShop = new CShop{ "Low Level Shop",&items };
+        m_pMidLevelShop = new CShop{ "Mid Level Shop" };
         m_pMidLevelShop->Initialize();
+        vector<SItemData> items =
+        {
+            {1,"Mid Meet",EItemType::CONSUME, EItemRarity::MID, "+HP 200", 100, 99},
+            {2,"Mid Chicken",EItemType::CONSUME, EItemRarity::MID, "+HP 300", 150, 99}
+        };
+        m_pMidLevelShop->AddShopItem(items);
+        
     }
 
     if (!m_pHighLevelShop)
     {
-        vector<CItem*> items =
-        {
-            {   new CItem{{1,"High Meet",EItemType::CONSUME, EItemRarity::LOW, "+HP 50", 10}}        },
-            {   new CItem{{2,"High Chicken",EItemType::CONSUME, EItemRarity::LOW, "+HP 100", 20}}    }
-        };
-        m_pHighLevelShop = new CShop{ "Low Level Shop",&items };
+        m_pHighLevelShop = new CShop{ "High Level Shop" };
         m_pHighLevelShop->Initialize();
+        vector<SItemData> items =
+        {
+            {1,"High Meet",EItemType::CONSUME, EItemRarity::HIGH, "+HP 400", 200, 99},
+            {2,"High Chicken",EItemType::CONSUME, EItemRarity::HIGH, "+HP 500", 300, 99}
+        };
+        m_pHighLevelShop->AddShopItem(items);
+
     }
 }
 
 void CMainGame::Update()
 {
     int		iInput(0);
+    CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pPlayer);
 
     while (true)
     {
@@ -82,14 +89,16 @@ void CMainGame::Update()
 
         m_pPlayer->Render();
 
-        cout << "1. 사냥터 2. 상점 3. 종료 : ";
+        cout << "1. 사냥터 2. 상점 3. 인벤토리 4. 종료 : ";
         cin >> iInput;
 
         switch (iInput)
         {
         case 1:
             if (m_pField)
+            {
                 m_pField->Update();
+            }
 
             break;
 
@@ -97,7 +106,14 @@ void CMainGame::Update()
             EnterShop();
             break;
 
-        case 3:
+        case 3 :
+            if (pPlayer)
+            {
+                pPlayer->GetPlayerInventory()->Update();
+            }
+            break;
+
+        case 4:
             return;
         }
 
@@ -107,10 +123,15 @@ void CMainGame::Update()
 
 void CMainGame::Release()
 {
+    cout << "Character" << "\t" << "m_pPlayer" << "\t" << "삭제" << endl;
     SAFE_DELETE(m_pPlayer);
+    cout << "Character" << "\t" << "m_pField" << "\t" << "삭제" << endl;
     SAFE_DELETE(m_pField);
+    cout << "Character" << "\t" << "m_pLowLevelShop" << "\t" << "삭제" << endl;
     SAFE_DELETE(m_pLowLevelShop);
+    cout << "Character" << "\t" << "m_pMidLevelShop" << "\t" << "삭제" << endl;
     SAFE_DELETE(m_pMidLevelShop);
+    cout << "Character" << "\t" << "m_pHighLevelShop" << "\t" << "삭제" << endl;
     SAFE_DELETE(m_pHighLevelShop);
 }
 
@@ -129,18 +150,21 @@ void CMainGame::EnterShop()
         case 1:
             if (m_pLowLevelShop)
             {
+                m_pLowLevelShop->SetInteractor(m_pPlayer);
                 m_pLowLevelShop->Update();
             }
             break;
         case 2:
             if (m_pMidLevelShop)
             {
+                m_pMidLevelShop->SetInteractor(m_pPlayer);
                 m_pMidLevelShop->Update();
             }
             break;
         case 3:
             if (m_pHighLevelShop)
             {
+                m_pHighLevelShop->SetInteractor(m_pPlayer);
                 m_pHighLevelShop->Update();
             }
             break;

@@ -1,0 +1,3 @@
+﻿  CPlayerInventory.cpp
+C:\Users\ryu\Desktop\TextRPG\TextRPG\CPlayerInventory.cpp(37,28): warning C4018: '<=': signed 또는 unsigned가 일치하지 않습니다.
+  TextRPG.vcxproj -> C:\Users\ryu\Desktop\TextRPG\Debug\TextRPG.exe
