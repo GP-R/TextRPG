@@ -25,10 +25,19 @@ void CMainGame::Initialize()
     {
         m_pPlayer = new CPlayer;
         m_pPlayer->Initialize();
-        CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pPlayer);
-        if (pPlayer)
+
+        INFO playerInfo;
+        std::ifstream ifs("TextRPG.bin", std::ios::binary);
+        playerInfo.Load(ifs);
+        m_pPlayer->LoadInfo(playerInfo);
+
+        if (playerInfo.strName.size() == 0)
         {
-            pPlayer->Select_Job();
+            CPlayer* pPlayer = dynamic_cast<CPlayer*>(m_pPlayer);
+            if (pPlayer)
+            {
+                pPlayer->Select_Job();
+            }
         }
     }
 
@@ -109,11 +118,15 @@ void CMainGame::Update()
         case 3 :
             if (pPlayer)
             {
+                pPlayer->Render();
                 pPlayer->GetPlayerInventory()->Update();
             }
             break;
 
         case 4:
+            ofstream ofs("TextRPG.bin", std::ios::binary);
+            pPlayer->GetInfo().Save(ofs);
+            ofs.close();
             return;
         }
 

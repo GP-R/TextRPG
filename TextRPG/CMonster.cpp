@@ -7,7 +7,7 @@ CMonster::CMonster()
 }
 
 CMonster::CMonster(INFO info)
-	: CCharacter(info.szName, info.iHp, info.iAttack)
+	: CCharacter(info.strName.c_str(), info.iHp, info.iAttack)
 {
 }
 

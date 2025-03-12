@@ -1,3 +1,9 @@
-﻿  CPlayerInventory.cpp
-C:\Users\ryu\Desktop\TextRPG\TextRPG\CPlayerInventory.cpp(37,28): warning C4018: '<=': signed 또는 unsigned가 일치하지 않습니다.
-  TextRPG.vcxproj -> C:\Users\ryu\Desktop\TextRPG\Debug\TextRPG.exe
+﻿  CCharacter.cpp
+  CField.cpp
+  CMainGame.cpp
+  CMonster.cpp
+  CPlayer.cpp
+  CShop.cpp
+C:\Users\ryu\Desktop\TextRPG\TextRPG\TextRPG\CShop.cpp(48,35): warning C4018: '<=': signed 또는 unsigned가 일치하지 않습니다.
+  코드를 생성하고 있습니다...
+  TextRPG.vcxproj -> C:\Users\ryu\Desktop\TextRPG\TextRPG\Debug\TextRPG.exe

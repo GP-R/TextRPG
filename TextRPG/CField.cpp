@@ -94,20 +94,18 @@ int CField::Fight()
 
         if (1 == iInput)
         {
-            m_pMonster->TakeDamage(m_pCopyPlayer->GetAttack());
-            m_pCopyPlayer->TakeDamage(m_pMonster->GetAttack());
+            m_pMonster->TakeDamage(m_pCopyPlayer->GetInfo().iAttack);
+            m_pCopyPlayer->TakeDamage(m_pMonster->GetInfo().iAttack);
 
-            if (0 >= m_pCopyPlayer->GetHP())
+            if (0 >= m_pCopyPlayer->GetInfo().iHp)
             {
                 cout << "»ç¸Á" << endl;
-                system("pause");
                 return 1;
             }
 
-            if (0 >= m_pMonster->GetHP())
+            if (0 >= m_pMonster->GetInfo().iHp)
             {
                 cout << "½Â¸®" << endl;
-                system("pause");
                 return 0;
             }
         }
